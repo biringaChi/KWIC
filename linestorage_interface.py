@@ -18,6 +18,10 @@ class LineStorageInterface:
 	def get_line(self, idx: int) -> str:
 		"""Get a specific line at a given index"""
 		pass
+
+	def store_permutations(self):
+		"""Store permutated data"""
+		pass
 	
 	def get_permutations(self) ->  List[str]:
 		"""Get all permutated lines"""
