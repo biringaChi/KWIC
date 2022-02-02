@@ -1,39 +1,54 @@
 '''
-Author:
+Original Author:
     Alexander J. Moulton
     Github: @moul-10
+
+Second Author:
+    Grady Landers
+    Github: @GradXL49
 
 Usage:
     circ_shift = CircularShifter()
     list_of_shifted_strings = circ_shift.shift("This is my input string")
 '''
 
-import numpy as np
-
 
 class CircularShifter:
+
+    # variable for holding 'dictionary' of uninteresting words
+    # this list was compiled from the following sources:
+    #   http://www.superheronation.com/2011/08/16/words-that-should-not-be-capitalized-in-titles/
+    #   https://www.englishclub.com/grammar/prepositions-list.htm
+    blacklist = ["a", "an", "the", "for", "and", "nor", "but", "or", "yet", "so", "aboard", "about", "above", "across",
+                 "after", "against", "along", "amid", "among", "anti", "around", "as", "at", "before", "behind",
+                 "below", "beneath", "beside", "besides", "between", "beyond", "but", "by", "concerning", "considering",
+                 "despite", "down", "during", "except", "excepting", "excluding", "following", "for", "from", "in",
+                 "inside", "into", "like", "minus", "near", "of", "off", "on", "onto", "opposite", "outside", "over",
+                 "past", "per", "plus", "regarding", "round", "save", "since", "than", "through", "to", "toward",
+                 "towards", "under", "underneath", "unlike", "until", "up", "upon", "versus", "via", "with", "within",
+                 "without"]
 
     # Only used to keep Object-Oriented, no attributes needed
     # This could be made static by removing class def
     def __init__(self):
         pass
 
-    # Input string, output a list of strings shifted
+    # Input string, output a list of indexes where a circular shift could start
     def shift(self, line):
-        # add initial string
-        output_list = np.array(line)
+        # initialize output
+        out = [line]
 
-        # split original string into individual words
-        temp = np.array(line.split(" "))
+        # split line into words, then loop through to do calculation
+        words = line.split()
+        i = 0
+        for word in words:
+            if self.interesting(word):
+                out.append(i)
+            i += 1
 
-        # for as many permutations possible...
-        for word in range(len(temp) - 1):
-            # shift the previous array of words as prescribed
-            temp = np.roll(temp, -1)
+        # return result
+        return out
 
-            # combine the resulting words to form a single string
-            # and add it to the output
-            output_list = np.append(output_list, ' '.join(temp))
-
-        # convert the output np.array to simple list
-        return output_list.tolist()
+    # Input string, return whether it is an interesting word as boolean
+    def interesting(self, word):
+        return word.lower() not in self.blacklist
