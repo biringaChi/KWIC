@@ -7,11 +7,7 @@ class LineStorageInterface:
 	Line Storage Interface
 	"""
 
-	def get_data(self) -> List[str]:
-		"""Get loaded data from input module"""
-		pass
-
-	def store_lines(self) -> Dict[int, str]:
+	def store_lines(self, ) -> None:
 		"""Store retrieved data in a data structure"""
 		pass
 

@@ -3,7 +3,7 @@ __author__ = 'biringaChi'
 from typing import List
 from linestorage_interface import LineStorageInterface
 from circular_shifter import CircularShifter
-from input import getData 
+from input import Input 
 
 class LineStorage(LineStorageInterface, CircularShifter):
 	"""Line Storage Implementation"""
@@ -18,17 +18,11 @@ class LineStorage(LineStorageInterface, CircularShifter):
 		with open("dummy.txt") as dummy_data:
 			data = dummy_data.readlines()
 		return data
-
-	def get_data(self) -> List[str]:
-		"""Overrides LineStorageInterface.get_data()"""
-		return self.load_dummy_data()
 	
 	def store_lines(self) -> List[str]:
 		"""Overrides LineStorageInterface.store_lines()"""
-		""" We store lines and correspoding indexes in a dictionary
-			This is just an example, we can use any data structure or object to store the lines
-		"""
-		return {idx: lines for idx, lines in enumerate(self.load_dummy_data())}
+		lines_stored = self.load_dummy_data()
+		return lines_stored
 	
 	def get_line(self, idx: int) -> str:
 		"""Overrides LineStorageInterface.get_line()"""
@@ -45,7 +39,7 @@ class LineStorage(LineStorageInterface, CircularShifter):
 		"""Overrides LineStorageInterface.get_permutations()"""
 		return self.store_permutations()
 	
-	def get_permutation_index(self, idx) -> str:
+	def get_permutation_index(self, idx: int) -> str:
 		"""Overrides LineStorageInterface.get_permutation_index()"""
 		shifted_lines = self.shift("This is my input string")
 		if (isinstance(idx, (int))): 
