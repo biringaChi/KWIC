@@ -7,7 +7,7 @@ class LineStorageInterface:
 	Line Storage Interface
 	"""
 
-	def store_lines(self, ) -> None:
+	def store_lines(self) -> None:
 		"""Store retrieved data in a data structure"""
 		pass
 
@@ -15,7 +15,7 @@ class LineStorageInterface:
 		"""Get a specific line at a given index"""
 		pass
 
-	def store_permutations(self):
+	def store_permutations(self) -> None:
 		"""Store permutated data"""
 		pass
 	

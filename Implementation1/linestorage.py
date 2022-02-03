@@ -3,26 +3,21 @@ __author__ = 'biringaChi'
 from typing import List
 from linestorage_interface import LineStorageInterface
 from circular_shifter import CircularShifter
-from input import Input 
+# from input import getData 
 
 class LineStorage(LineStorageInterface, CircularShifter):
 	"""Line Storage Implementation"""
 	def __init__(self) -> None:
 		super().__init__()
+		self.LINES: List[str] = []
+		self.PERMUTATIONS: List[str] = []
 
 	def __str__(self) -> str: return {self.__class__.__name__}
 	def __repr__(self) -> str: return self.__str__()
-
-	def load_dummy_data(self) -> List[str]:
-		"""Place holder for getData()"""
-		with open("dummy.txt") as dummy_data:
-			data = dummy_data.readlines()
-		return data
 	
-	def store_lines(self) -> List[str]:
+	def store_lines(self, lines: List[str]):
 		"""Overrides LineStorageInterface.store_lines()"""
-		lines_stored = self.load_dummy_data()
-		return lines_stored
+		self.LINES.append(lines)
 	
 	def get_line(self, idx: int) -> str:
 		"""Overrides LineStorageInterface.get_line()"""
@@ -30,10 +25,10 @@ class LineStorage(LineStorageInterface, CircularShifter):
 			return self.store_lines()[idx]
 		else: raise TypeError("Invalid argument. Only 'ints' and 'floats' are accepted")
 	
-	def store_permutations(self) -> List[str]:
+	def store_permutations(self):
 		"""Overrides LineStorageInterface.store_permutations()"""
 		permutations: List[str] = self.shift()
-		return permutations
+		self.PERMUTATIONS.append(permutations)
 	
 	def get_permutations(self) -> List[str]:
 		"""Overrides LineStorageInterface.get_permutations()"""
