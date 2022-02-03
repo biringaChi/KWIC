@@ -1,12 +1,15 @@
 '''
+
 Author:
     Alexander J. Moulton
     Github: @moul-10
+
 Usage:
     line_storage = LineStorage()
     line_storage.store_lines(List_of_strings_from_input)
     shifter.shift(line_storage.get_line(0))
     etc...
+
     '''
 from typing import List
 
@@ -53,11 +56,10 @@ class LineStorage(LineStorageInterface):
                 # from Word object contents and add to list
                 permutation = []
                 current_index = starting_index
-                done = False
                 line = self.__data.__getitem__(self.__permutations.index(starting_index_list))
 
+                done = False
                 while not done:
-                    # print("Current Index: ", current_index)
                     permutation.append(line.__getitem__(current_index).get_content())
                     current_index = (current_index + 1) % (len(line))
 

@@ -1,3 +1,14 @@
+'''
+
+Author:
+    Alexander J. Moulton
+    Github: @moul-10
+
+Usage:
+    just used to run the modules in sequence
+
+'''
+
 from line_storage import LineStorage
 from input import Input
 from circular_shifter import CircularShifter
