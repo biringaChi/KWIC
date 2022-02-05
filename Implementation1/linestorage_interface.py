@@ -1,6 +1,6 @@
 __author__ = 'biringaChi'
 
-from typing import Dict, List
+from typing import List
 
 class LineStorageInterface:
 	"""
