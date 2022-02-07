@@ -4,9 +4,12 @@
 from interface.input_interface import InputInterface
 
 class Input(InputInterface):
-    # getData(): List<String>
-    # In this implementation, getData() collects a number of strings from the keyboard
+    # get_data(): List<String>
+    # In this implementation, get_data() collects a number of strings from the keyboard
     # to be returned to the method caller
+    def __init__(self):
+        super().__init__()
+
     @staticmethod
     def get_data():
         """Overrides InputInterface.get_data()"""
