@@ -53,7 +53,9 @@ class LineStorage(LineStorageInterface):
         """Overrides LineStorageInterface.get_permutations()"""
         """Returns list of strings from indexes to start from"""
         permutations_list = []
+        
         original_line_index = 0
+        
         for starting_index_list in self.__permutations:
             # get indices from which to start from
             for starting_index in starting_index_list:
@@ -61,6 +63,7 @@ class LineStorage(LineStorageInterface):
                 # from Word object contents and add to list
                 permutation = []
                 current_index = starting_index
+                
                 line = self.__data.__getitem__(original_line_index)
 
                 done = False
@@ -71,11 +74,9 @@ class LineStorage(LineStorageInterface):
                     if current_index == starting_index:
                         done = True
                 permutations_list.append(' '.join(permutation))
+                
             original_line_index +=1
+            
         return permutations_list
-
-
-
-
 
 

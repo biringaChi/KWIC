@@ -15,6 +15,7 @@ from interface.alphabetizer_interface import AlphabetizerInterface
 
 
 class Alphabetizer(AlphabetizerInterface):
+  
     def __init__(self) -> None:
         super().__init__()
 
