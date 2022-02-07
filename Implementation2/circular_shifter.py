@@ -11,9 +11,9 @@ Usage:
     circ_shift = CircularShifter()
     list_of_shifted_strings = circ_shift.shift("This is my input string")
 '''
+from interface.circular_shifter_interface import CircularShifterInterface
 
-
-class CircularShifter:
+class CircularShifter(CircularShifterInterface):
 
     # variable for holding 'dictionary' of uninteresting words
     blacklist = ["a", "an", "the", "for", "and", "nor", "but", "or", "yet", "so", "aboard", "about", "above", "across",
@@ -27,11 +27,13 @@ class CircularShifter:
 
     # Only used to keep Object-Oriented, no attributes needed
     # This could be made static by removing class def
-    def __init__(self):
-        pass
+
+    def __init__(self) -> None:
+        super().__init__()
 
     # Input string, output a list of indexes where a circular shift could start
     def shift(self, line):
+        """Overrides CircularShifterInterface.shift()"""
         # initialize output
         out = []
 
@@ -48,4 +50,5 @@ class CircularShifter:
 
     # Input string, return whether it is an interesting word as boolean
     def interesting(self, word):
+        """Overrides CircularShifterInterface.interesting()"""
         return word.lower() not in self.blacklist

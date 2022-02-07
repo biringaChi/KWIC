@@ -9,17 +9,20 @@ Usage:
 '''
 
 import numpy as np
+from interface.circular_shifter_interface import CircularShifterInterface
 
 
-class CircularShifter:
+class CircularShifter(CircularShifterInterface):
 
     # Only used to keep Object-Oriented, no attributes needed
     # This could be made static by removing class def
-    def __init__(self):
-        pass
+
+    def __init__(self) -> None:
+        super().__init__()
 
     # Input string, output a list of strings shifted
     def shift(self, line):
+        """Overrides CircularShifterInterface.shift()"""
         # add initial string
         output_list = np.array(line)
 

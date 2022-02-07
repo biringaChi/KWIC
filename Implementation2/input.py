@@ -1,13 +1,11 @@
 #Author: Sarthak Sanyasi
 #implementation2 - input
 
-class Input:
-    # to maintain OOD, to make static delete constructor
-    def __init__(self):
-        pass
+from interface.input_interface import InputInterface
 
+class Input(InputInterface):
     def get_data(self):
-        with open('input_file.txt', 'r') as f:
-            lines = f.read().splitlines()
-        f.close()
-        return lines
+        """Overrides InputInterface.get_data()"""
+        with open('input_file') as file:
+            lines = file.readlines()
+            return lines
