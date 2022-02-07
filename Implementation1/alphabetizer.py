@@ -18,6 +18,7 @@ class Alphabetizer(AlphabetizerInterface):
     def __init__(self) -> None:
         super().__init__()
 
-    def alphabetize(self, output_list: List[str]):
+    def alphabetize(self, output_list: List[str]) -> List[str]:
         """Overrides AlphabetizerInterface.alphabetize()"""
-        return np.sort(output_list)
+        sorted_list = np.sort(output_list)
+        return sorted_list

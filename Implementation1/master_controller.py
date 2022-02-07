@@ -10,7 +10,8 @@ from output import Output
 def main():
 	linestorage = LineStorage() 
 
-	input = Input().get_data()
+	inputter = Input()
+	input = inputter.get_data()
 	linestorage.store_lines(input)
 
 	shifted_lines = []
@@ -21,9 +22,11 @@ def main():
 
 	shifted_lines_flat = [line for list_of_lines in shifted_lines for line in list_of_lines]
 
-	aplhabetized = Alphabetizer().alphabetize(shifted_lines_flat)
+	alphabetizer = Alphabetizer()
 
-	Output().output(aplhabetized)
+	alphabetized = alphabetizer.alphabetize(shifted_lines_flat)
+
+	Output().output(alphabetized)
 
 
 if __name__ == "__main__":
