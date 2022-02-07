@@ -1,12 +1,15 @@
 # Grady Landers
 # KWIC Implementation 1 - Input module
 
-class Input:
+from interface.input_interface import InputInterface
+
+class Input(InputInterface):
     # getData(): List<String>
     # In this implementation, getData() collects a number of strings from the keyboard
     # to be returned to the method caller
     @staticmethod
-    def getData():
+    def get_data():
+        """Overrides InputInterface.get_data()"""
         lines = []
         print("Enter lines to be processed by the KWIC program. Enter an empty line to finish:")
 

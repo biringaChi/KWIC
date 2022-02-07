@@ -13,7 +13,7 @@ Usage:
     '''
 from typing import List
 
-from linestorage_interface import LineStorageInterface
+from interface.linestorage_interface import LineStorageInterface
 from word import Word
 
 
@@ -25,6 +25,7 @@ class LineStorage(LineStorageInterface):
         self.__permutations = []
 
     def store_lines(self, lines: List[str]) -> None:
+        """Overrides LineStorageInterface.store_lines()"""
         for line in lines:
             # split string line into separate words
             list_of_string_words = line.split(' ')
@@ -36,6 +37,7 @@ class LineStorage(LineStorageInterface):
             self.__data.append(line_list_of_words)
 
     def get_line(self, idx: int) -> str:
+        """Overrides LineStorageInterface.get_line()"""
         word_strings = []
         for word in self.__data[idx]:
             # make list of word strings
@@ -44,37 +46,35 @@ class LineStorage(LineStorageInterface):
         return ' '.join(word_strings)
 
     def store_permutations(self, permutations: List[List[int]]):
+        """Overrides LineStorageInterface.store_permutations()"""
         self.__permutations = permutations
 
     def get_permutations(self) -> List[str]:
+        """Overrides LineStorageInterface.get_permutations()"""
         """Returns list of strings from indexes to start from"""
         permutations_list = []
-        index_of_list = 0
         for starting_index_list in self.__permutations:
-
-            # get original line of words
-            line = self.__data.__getitem__(index_of_list)
-
             # get indices from which to start from
             for starting_index in starting_index_list:
                 # for each index in the list, piece together one string
                 # from Word object contents and add to list
                 permutation = []
                 current_index = starting_index
-
+                line = self.__data.__getitem__(self.__permutations.index(starting_index_list))
 
                 done = False
-
                 while not done:
-                    #cycle through the original line with different starting points
                     permutation.append(line.__getitem__(current_index).get_content())
                     current_index = (current_index + 1) % (len(line))
 
                     if current_index == starting_index:
                         done = True
-
                 permutations_list.append(' '.join(permutation))
 
-            index_of_list += 1
-
         return permutations_list
+
+
+
+
+
+

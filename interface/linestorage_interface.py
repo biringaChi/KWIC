@@ -2,13 +2,12 @@ __author__ = 'biringaChi'
 
 from typing import List
 
-
 class LineStorageInterface:
 	"""
 	Line Storage Interface
 	"""
 
-	def store_lines(self) -> None:
+	def store_lines(self, lines: List[str]) -> None:
 		"""Store retrieved data in a data structure"""
 		pass
 
